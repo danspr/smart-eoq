@@ -4,6 +4,13 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+
+    public function __construct()
+    {
+        $auth = new Auth();
+        $auth->isSessionExist();
+    }
+    
     public function index(): string
     {
         $contents = view('pages/home_view');
