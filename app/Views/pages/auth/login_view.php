@@ -78,7 +78,7 @@
     <script src="<?= base_url() ?>assets/js/show-password.js"></script>
      <!-- Form Validation JS -->
      <script src="<?= base_url() ?>assets/js/validation.js"></script>
-    <?= view('templates/script-custom') ?>
+    <?= view('templates/script_custom') ?>
     
     <?= isset($vueScript)  ? '<script src="'.base_url($vueScript).'"></script>' : '' ?>
 

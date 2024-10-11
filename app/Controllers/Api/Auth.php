@@ -4,7 +4,6 @@ namespace App\Controllers\Api;
 
 use CodeIgniter\API\ResponseTrait;
 use App\Models\UserModel;
-use App\Entities\User;
 
 class Auth extends \App\Controllers\BaseController
 {
