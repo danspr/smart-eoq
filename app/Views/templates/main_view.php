@@ -3,7 +3,7 @@
     <?= view('templates/metadata', ['pageTitle' => $pageTitle]) ?>
     
 <body>
-    <div class="page">
+    <div class="page" id="app-wrapper">
         <?= view('templates/header') ?>
         <?= view('templates/sidebar') ?>
         
@@ -19,7 +19,9 @@
     <div id="responsive-overlay"></div>
 
     <?= view('templates/script') ?>
-
+    <?= view('templates/script_custom') ?>
+    <?= isset($vueScript)  ? '<script src="'.base_url($vueScript).'"></script>' : '' ?>
+    
 </body>
 
 </html>

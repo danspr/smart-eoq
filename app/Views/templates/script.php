@@ -21,6 +21,4 @@
 <script src="<?= base_url() ?>assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
 
 <!-- Custom JS -->
-<script src="<?= base_url() ?>assets/js/custom.js"></script>
-
-<?= view('templates/script-custom') ?>
+<!-- <script src="<?= base_url() ?>assets/js/custom.js"></script> -->

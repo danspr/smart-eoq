@@ -14,6 +14,7 @@
 
 <script>
   var baseURL = '<?= base_url() ?>';
+  var customParam = <?= isset($customParam) ? json_encode($customParam) : json_encode(array()) ?>;
   var axiosHeader = {
       'Content-Type': 'application/x-www-form-urlencoded',
       "X-Requested-With": "XMLHttpRequest"

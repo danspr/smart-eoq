@@ -27,7 +27,7 @@
 
              <!-- Start::slide -->
              <li class="slide">
-                <a href="icons.html" class="side-menu__item">
+                <a href="/" class="side-menu__item">
                     <i class="bx bx-home side-menu__icon"></i>
                     <span class="side-menu__label">Dashboard</span>
                 </a>
@@ -35,11 +35,25 @@
             <!-- End::slide -->
 
             <!-- Start::slide -->
-            <li class="slide">
-                <a href="icons.html" class="side-menu__item">
-                    <i class="bx bx-calculator side-menu__icon"></i>
-                    <span class="side-menu__label">EOQ Calculation</span>
+            <li class="slide has-sub">
+                <a href="javascript:void(0);" class="side-menu__item">
+                    <i class="bx bx-math side-menu__icon"></i>
+                    <span class="side-menu__label">EOQ</span>
+                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
+                <ul class="slide-menu child1">
+                    <li class="slide side-menu__label1">
+                        <a href="javascript:void(0)">EOQ</a>
+                    </li>
+                    <li class="slide">
+                        <a href="<?= base_url() ?>eoq" class="side-menu__item">EOQ Analysis</a>
+                    </li>
+                    <li class="slide">
+                        <a href="#" class="side-menu__item">Parameters</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End::slide -->
             </li>
             <!-- End::slide -->
 
