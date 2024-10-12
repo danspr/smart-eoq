@@ -15,6 +15,7 @@ class Home extends BaseController
     {
         $contents = view('pages/home_view');
         $data = [
+            ... $this->defaultDataView(),
             'pageTitle' => 'Dashboard | SmartEOQ',
             'contents' => $contents,
             // 'vueScript' => 'assets/js/ps-script-admin.js',
