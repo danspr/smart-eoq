@@ -32,6 +32,8 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], static function ($
         $routes->get('list', 'EOQ::getEOQList');
         $routes->get('detail', 'EOQ::getDetailAnalysis');
         $routes->post('update', 'EOQ::updateDetailAnalysis');
+        $routes->post('insert', 'EOQ::insertNewAnalysis');
+        $routes->post('delete', 'EOQ::deleteAnalysis');
     });
 
 });

@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $allowedFields = ['id','full_name', 'username', 'password', 'role', 'status'];
 
     public function getSessionUserInfo($id){
-        return $this->select('id, full_name, username')->where(['id' => $id])->first();
+        return $this->select('id, full_name, username, role')->where(['id' => $id])->first();
     }
 
     public function getUserLogin($username){

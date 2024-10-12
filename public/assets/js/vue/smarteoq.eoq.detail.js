@@ -41,7 +41,7 @@ createApp({
             axios.post(this.urlUpdateResultItem, payload, { headers: axiosHeader })
             .then(function (response) {
                 if(response.status == 200) {
-                    showAlert('success', getString('success.update'));
+                    showAlert('success', getMessage('success.update'));
                     setTimeout(() => {
                         redirect(baseURL + 'eoq');
                     }, 1000)
@@ -49,9 +49,6 @@ createApp({
             })
             .catch(function (error) {
                 axiosErrorCallback(error);
-            })
-            .finally(() => {
-                hideLoadingButton(this.buttonLoginId, 'Sign In');
             })
         }
     }

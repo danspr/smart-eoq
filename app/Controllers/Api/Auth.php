@@ -74,6 +74,7 @@ class Auth extends \App\Controllers\BaseController
             'user_id' => $user['id'],
             'full_name' => $user['full_name'],
             'username' => $user['username'],
+            'role' => $user['role'],
             'logged_in' => true
         ];
         $this->session->set($sessionData);

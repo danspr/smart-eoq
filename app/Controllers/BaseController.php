@@ -55,4 +55,15 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    public function defaultDataView(){
+        $session = session();
+        $data = [
+            'profile' => [
+                'full_name' => $session->get('full_name'),
+                'role' => $session->get('role'),
+            ],
+        ];
+        return $data;
+    }
 }

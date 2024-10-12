@@ -130,6 +130,73 @@ class EOQ extends \App\Controllers\BaseController
         }
     }
 
+    public function insertNewAnalysis(){
+        try {
+            if(!$this->validate($this->eoqNewAnalysisValidation())){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getPost();
+            $dataArray = [
+                'name' => $data['name'],
+                'annual_demand' => $data['annual_demand'],
+                'purchasing_price' => $data['purchasing_price'],
+            ];
+
+            $itemId = $this->eoqModel->insertItem($dataArray);
+            $itemDetail = $this->eoqModel->getItemDetail($itemId);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.insert'),
+                'data' => $itemDetail
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function deleteAnalysis(){
+        try {
+            if(!$this->validate($this->detailAnalysisValidation())){
+                return $this->fail($this->validator->getErrors());
+            }            
+
+            $data = $this->request->getPost();
+            $this->eoqModel->deleteItem(['id' => $data['id']]);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.delete')
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    private function eoqNewAnalysisValidation(){
+        $rules = [
+            'name' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Name is required',
+                ]
+            ],
+            'annual_demand' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Annual Demand is required',
+                ]
+            ],
+            'purchasing_price' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Purchasing Price is required',
+                ]
+            ]
+        ];
+        return $rules;
+    }
 
     private function eoqResultValidation(){
         $rules = [

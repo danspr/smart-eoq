@@ -3,8 +3,8 @@
     <?= view('templates/metadata', ['pageTitle' => $pageTitle]) ?>
     
 <body>
-    <div class="page" id="app-wrapper">
-        <?= view('templates/header') ?>
+    <div class="page">
+        <?= view('templates/header', ['profile' => $profile]) ?>
         <?= view('templates/sidebar') ?>
         
         <?= $contents ?>
