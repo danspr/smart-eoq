@@ -174,6 +174,205 @@ class EOQ extends \App\Controllers\BaseController
         }
     }
 
+    public function getParameterList(){
+        try {
+            $params = ['category'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getGet();
+            if($data['category'] == 'default'){
+                $parameterList = $this->eoqModel->getDefaultParameterList();
+            } else {
+                $parameterList = $this->eoqModel->getParameter($data['category']);
+            }
+            
+            $response = [
+                'status' => 'success',
+                'data' => $parameterList
+            ];
+            return $this->respond($response);            
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function getParameterDetail(){
+        try {
+            $params = ['id', 'category'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getGet();
+            if($data['category'] == 'default'){
+                $parameterDetail = $this->eoqModel->getDefaultParameter(['id' => $data['id']]);
+            } else {
+                $parameterDetail = $this->eoqModel->getParameterDetail(['category' => $data['category'], 'id' => $data['id']]);
+            }
+
+            if(empty($parameterDetail)){
+                return $this->failNotFound('Data is not found');
+            }
+           
+            $response = [
+                'status' => 'success',
+                'data' => $parameterDetail
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function insertNewParameter(){
+        try {
+            $params = ['name', 'value', 'category'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getPost();
+            $dataArray = [
+                'name' => $data['name'],
+                'category' => $data['category'],
+                'value' => $data['value'],
+                'type' => ($data['category'] == 'hc') ? 'Percent' : 'Ammount',
+            ];
+
+            $this->eoqModel->insertParameter($dataArray);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.insert')
+            ];
+            return $this->respond($response);
+
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+    
+    public function updateParameter(){
+        try {
+            $params = ['id', 'name', 'value'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getPost();
+            $updateData = [
+                'name' => $data['name'],
+                'value' => $data['value'],
+            ];
+            $this->eoqModel->updateParameter($updateData, ['id' => $data['id']]);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.update')
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function updateDefaultParameter(){
+        try {
+            $params = ['id', 'value'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getPost();
+            $updateData = [
+                'value' => $data['value'],
+            ];
+            $this->eoqModel->updateDefaultParameter($updateData, ['id' => $data['id']]);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.update')
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function deleteParameter(){
+        try {
+            $params = ['id'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getPost();
+            $this->eoqModel->deleteParameter(['id' => $data['id']]);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.delete')
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function deleteDefaultParameter(){
+        try {
+            $params = ['id'];
+            if(!$this->validate($this->eoqParameterValidation($params))){
+                return $this->fail($this->validator->getErrors());
+            }
+
+            $data = $this->request->getPost();
+            $this->eoqModel->deleteDefaultParameter(['id' => $data['id']]);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.delete')
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    private function eoqParameterValidation($params = []){
+        $rules = [
+            'id'=> [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'ID is required',
+                ]
+            ],
+            'name'=> [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Name is required',
+                ]
+            ],
+            'category'=> [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Category is required',
+                ]
+            ],
+            'value'=> [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Value is required',
+                ]
+            ],
+        ];
+        if(!empty($params)){
+            $getRule = [];
+            foreach($params as $value){
+                $getRule[$value] = $rules[$value];
+            }
+            return $getRule;
+        }
+        return $rules;
+    }
+
     private function eoqNewAnalysisValidation(){
         $rules = [
             'name' => [

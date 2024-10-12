@@ -31,6 +31,8 @@ function getString($key): string
         'success.login' => 'Login successful. Welcome back!',
         'success.logout' => 'Logout successful.',
         'success.update' => 'Data successful updated!',
+        'success.insert' => 'Data successful inserted!',
+        'success.delete' => 'Data successful deleted!',
     ];
 
     if (isset($key) && array_key_exists($key, $arrayString)) {

@@ -49,7 +49,7 @@
                         <a href="<?= base_url('eoq') ?>" active-path="eoq" class="side-menu__item">EOQ Analysis</a>
                     </li>
                     <li class="slide">
-                        <a href="#" class="side-menu__item">Parameters</a>
+                        <a href="<?= base_url('eoq/parameter') ?>" active-path="eoq-parameters"  class="side-menu__item">Parameters</a>
                     </li>
                 </ul>
             </li>

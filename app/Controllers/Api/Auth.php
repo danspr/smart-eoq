@@ -18,7 +18,7 @@ class Auth extends \App\Controllers\BaseController
     public function isSessionExist(){
         if(!$this->session->has('user_id')){
             $this->session->destroy();
-            return $this->failUnauthorized(getString('error.session_expired'));
+            return $this->failUnauthorized('Session expired. Please log in again.');
             exit;
         }
     }

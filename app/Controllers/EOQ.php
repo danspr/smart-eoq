@@ -52,15 +52,28 @@ class EOQ extends BaseController
         $data = [
             ... $this->defaultDataView(),
             'pageTitle' => 'EOQ Detail | ' . getAppName(),
-            'profile' => [
-                'full_name' => $this->session->get('full_name'),
-                'role' => $this->session->get('role'),
-            ],
             'contents' => $contents,
             'vueScript' => 'assets/js/vue/smarteoq.eoq.detail.js',
             'customParam' => [ 
                 'itemId' => $id
             ]
+        ];
+
+        return view('templates/main_view', $data);
+    }
+
+    public function eoqParamterView(){
+        $pageName = 'EOQ Parameter';
+        $pageView = [
+            'pageName' => $pageName,
+        ];
+
+        $contents = view('pages/eoq/eoq_parameter_view', $pageView);
+        $data = [
+            ... $this->defaultDataView(),
+            'pageTitle' => 'Parameter | ' . getAppName(),
+            'contents' => $contents,
+            'vueScript' => 'assets/js/vue/smarteoq.parameter.js',
         ];
 
         return view('templates/main_view', $data);

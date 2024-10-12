@@ -33,13 +33,30 @@ class EOQModel extends Model
         return $query->getResult();
     }
 
-    public function getDefaultParameter($where){ 
-        $builder = $this->db->table('eoq_default_parameter');
+    public function getParameterDetail($where){
+        $builder = $this->db->table('eoq_parameter');
         $builder->select('id, code, name, category, value, type');
         $builder->where($where);
         $query = $builder->get();
         return $query->getRow();
     }
+
+    public function getDefaultParameter($where = []){ 
+        $builder = $this->db->table('eoq_default_parameter');
+        $builder->select('id, code, name, category, value, type');
+        if(!empty($where)) $builder->where($where);
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    public function getDefaultParameterList($where = []){ 
+        $builder = $this->db->table('eoq_default_parameter');
+        $builder->select('id, code, name, category, value, type');
+        if(!empty($where)) $builder->where($where);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
 
     public function insertItem($dataArray){
         $this->db->table($this->table)->insert($dataArray);
@@ -52,6 +69,26 @@ class EOQModel extends Model
 
     public function deleteItem($where){
         $this->db->table($this->table)->where($where)->delete();
+    }
+
+    public function insertParameter($dataArray){
+        $this->db->table('eoq_parameter')->insert($dataArray);
+    }
+
+    public function updateParameter($dataArray, $where){
+        $this->db->table('eoq_parameter')->where($where)->update($dataArray);
+    }
+
+    public function updateDefaultParameter($dataArray, $where){
+        $this->db->table('eoq_default_parameter')->where($where)->update($dataArray);
+    }
+
+    public function deleteParameter($where){
+        $this->db->table('eoq_parameter')->where($where)->delete();
+    }
+
+    public function deleteDefaultParameter($where){
+        $this->db->table('eoq_default_parameter')->where($where)->delete();
     }
 
 }

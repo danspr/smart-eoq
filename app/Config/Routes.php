@@ -13,7 +13,7 @@ $routes->get('/logout', 'Auth::logout');
 
 /** EOQ routes */
 $routes->get('/eoq', 'EOQ::index');
-$routes->get('/eoq/parameter', '');
+$routes->get('/eoq/parameter', 'EOQ::eoqParamterView');
 $routes->get('/eoq/detail/([0-9]+)', 'EOQ::eoqDetailView/$1');
 
 /**
@@ -34,6 +34,17 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], static function ($
         $routes->post('update', 'EOQ::updateDetailAnalysis');
         $routes->post('insert', 'EOQ::insertNewAnalysis');
         $routes->post('delete', 'EOQ::deleteAnalysis');
+    });
+
+    /** EOQ Parameter */
+    $routes->group('eoq-parameter', static function ($routes) {
+        $routes->get('list', 'EOQ::getParameterList');
+        $routes->get('detail', 'EOQ::getParameterDetail');
+        $routes->post('insert', 'EOQ::insertNewParameter');
+        $routes->post('update', 'EOQ::updateParameter');
+        $routes->post('delete', 'EOQ::deleteParameter');
+        $routes->post('default/update', 'EOQ::updateDefaultParameter');
+        $routes->post('default/delete', 'EOQ::deleteDefaultParameter');
     });
 
 });
