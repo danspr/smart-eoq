@@ -53,6 +53,7 @@
                                     <td>{{ item.frequency_order }}</td>
                                     <td>
                                         <a :href="'<?= base_url() ?>eoq/detail/'+ item.id" class="btn btn-primary-light btn-icon btn-sm" title="See EOQ Result" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print"><i class="ri-bar-chart-2-line"></i></a>
+                                        <button @click="getItemDetail(item.id)" class="btn btn-info-light btn-icon ms-1 btn-sm" title="Edit Item"><i class="ri-edit-line"></i></button>
                                         <button @click="deleteItem(item.id)" class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn" title="Delete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete"><i class="ri-delete-bin-5-line"></i></button>
                                     </td>
                                 </tr>
@@ -66,6 +67,7 @@
     </div>
 
     <?= view('modals/eoq_new_modal') ?>
+    <?= view('modals/eoq_edit_modal') ?>
 </div>
 <!-- End::app-content -->
 
