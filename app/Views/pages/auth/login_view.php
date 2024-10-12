@@ -12,7 +12,7 @@
 	<meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
 
     <!-- Favicon -->
-    <link rel="icon" href="<?= base_url() ?>assets/images/brand-logos/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?= base_url() ?>assets/images/brand-logos/smarteoq-favicon.png" type="image/x-icon">
     <!-- Main Theme Js -->
     <script src="<?= base_url() ?>assets/js/authentication-main.js"></script>
     <!-- Bootstrap Css -->
