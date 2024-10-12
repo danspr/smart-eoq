@@ -1,5 +1,5 @@
 <!-- Start::app-content -->
-<div class="main-content app-content">
+<div class="main-content app-content" id="app-wrapper" menu-active-path="eoq">
     <div class="container-fluid">
         <!-- Page Header -->
         <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
@@ -27,10 +27,6 @@
                             <div class="ms-sm-2 ms-0 mt-sm-0 mt-2">
                                 <div class="h6 fw-semibold mb-0">EOQ Detail Result</div>
                             </div>
-                        </div>
-                        <div class="ms-auto mt-md-0 mt-2">
-                            <button class="btn btn-sm btn-secondary me-1" onclick="javascript:window.print();">Print<i class="ri-printer-line ms-1 align-middle d-inline-block"></i></button>
-                            <button class="btn btn-sm btn-primary">Save As PDF<i class="ri-file-pdf-line ms-1 align-middle d-inline-block"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
