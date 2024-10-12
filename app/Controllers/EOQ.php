@@ -23,6 +23,7 @@ class EOQ extends BaseController
 
         $contents = view('pages/eoq/eoq_view', $pageView);
         $data = [
+            ... $this->defaultDataView(),
             'pageTitle' => 'EOQ Analysis | ' . getAppName(),
             'contents' => $contents,
             'vueScript' => 'assets/js/vue/smarteoq.eoq.js',
@@ -49,7 +50,12 @@ class EOQ extends BaseController
 
         $contents = view('pages/eoq/eoq_detail_view', $pageView);
         $data = [
+            ... $this->defaultDataView(),
             'pageTitle' => 'EOQ Detail | ' . getAppName(),
+            'profile' => [
+                'full_name' => $this->session->get('full_name'),
+                'role' => $this->session->get('role'),
+            ],
             'contents' => $contents,
             'vueScript' => 'assets/js/vue/smarteoq.eoq.detail.js',
             'customParam' => [ 

@@ -41,8 +41,17 @@ class EOQModel extends Model
         return $query->getRow();
     }
 
+    public function insertItem($dataArray){
+        $this->db->table($this->table)->insert($dataArray);
+        return $this->db->insertID();
+    }
+
     public function updateItem($dataArray, $where){
         $this->db->table($this->table)->where($where)->update($dataArray);
+    }
+
+    public function deleteItem($where){
+        $this->db->table($this->table)->where($where)->delete();
     }
 
 }
