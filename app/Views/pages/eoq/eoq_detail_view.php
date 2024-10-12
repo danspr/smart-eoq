@@ -45,15 +45,15 @@
                                             </tr>
                                             <tr>
                                                 <td class="pb-2 text-muted">Annual Demand (Qty)</td>
-                                                <td class="pb-2 fw-bold">: {{ data.annual_demand }}</td>
+                                                <td class="pb-2 fw-bold">: {{ formatNumber(data.annual_demand) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="pb-2 text-muted">Annual Demand (Rp)</td>
-                                                <td class="pb-2 fw-bold">: {{ data.total }}</td>
+                                                <td class="pb-2 fw-bold">: {{ formatCurrency(data.total) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="pb-2 text-muted">Purchasing Price</td>
-                                                <td class="pb-2 fw-bold">: {{ data.purchasing_price }}</td>
+                                                <td class="pb-2 fw-bold">: {{ formatCurrency(data.purchasing_price) }}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -75,12 +75,12 @@
                                             <tr v-for="(item, index) in data.holding_cost.parameters" :key="item.name">
                                                 <td class="text-muted">{{ item.name }}</td>
                                                 <td class="text-muted text-end">{{ item.percentage }}</td>
-                                                <td class="text-muted text-end">{{ item.cost }}</td>
+                                                <td class="text-muted text-end">{{ formatCurrency(item.cost) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold">Holding Cost (HC)</td>
                                                 <td class="fw-bold text-end">{{ data.holding_cost.total_percentage }}</td>
-                                                <td class="fw-bold text-end">{{ data.holding_cost.total_cost }}</td>
+                                                <td class="fw-bold text-end">{{ formatCurrency(data.holding_cost.total_cost) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -102,12 +102,12 @@
                                             <tr v-for="(item, index) in data.transaction_cost.parameters" :key="item.name">
                                                 <td class="text-muted">{{ item.name }}</td>
                                                 <td class="text-muted text-end">{{ item.hour }}</td>
-                                                <td class="text-muted text-end">{{ item.cost }}</td>
+                                                <td class="text-muted text-end">{{ formatCurrency(item.cost) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold">Transaction Cost (HC)</td>
                                                 <td class="fw-bold text-end">{{ data.transaction_cost.total_hour }}</td>
-                                                <td class="fw-bold text-end">{{ data.transaction_cost.total_cost }}</td>
+                                                <td class="fw-bold text-end">{{ formatCurrency(data.transaction_cost.total_cost) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -133,15 +133,15 @@
                                         <tbody>
                                             <tr>
                                                 <td class="">EOQ = Economic Order Quantity</td>
-                                                <td class="fw-bold">{{ data.eoq_analysis.eoq_result }}</td>
+                                                <td class="fw-bold">{{ formatNumber(data.eoq_analysis.eoq_result) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="">N =Number of Order per year</td>
-                                                <td class="fw-bold">{{ data.eoq_analysis.number_order }}</td>
+                                                <td class="fw-bold">{{ formatNumber(data.eoq_analysis.number_order) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="">F = Frequency Order (in days)</td>
-                                                <td class="fw-bold">{{ data.eoq_analysis.frequency_order }}</td>
+                                                <td class="fw-bold">{{ formatNumber(data.eoq_analysis.frequency_order) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

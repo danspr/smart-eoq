@@ -50,6 +50,12 @@ createApp({
             .catch(function (error) {
                 axiosErrorCallback(error);
             })
+        },
+        formatCurrency(number){
+            return 'Rp '+ new Intl.NumberFormat().format(number);
+        },
+        formatNumber(number){
+            return new Intl.NumberFormat().format(number);
         }
     }
 }).mount('#app-wrapper')
