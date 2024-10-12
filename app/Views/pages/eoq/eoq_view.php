@@ -46,11 +46,11 @@
                                 <tr v-for="(item, index) in dataList" :key="item.id">
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ item.name }}</td>
-                                    <td>{{ item.annual_demand }}</td>
-                                    <td>{{ item.purchasing_price }}</td>
-                                    <td>{{ item.eoq_result }}</td>
-                                    <td>{{ item.number_order }}</td>
-                                    <td>{{ item.frequency_order }}</td>
+                                    <td>{{ formatNumber(item.annual_demand) }}</td>
+                                    <td>{{ formatCurrency(item.purchasing_price) }}</td>
+                                    <td>{{ formatNumber(item.eoq_result) }}</td>
+                                    <td>{{ formatNumber(item.number_order) }}</td>
+                                    <td>{{ formatNumber(item.frequency_order) }}</td>
                                     <td>
                                         <a :href="'<?= base_url() ?>eoq/detail/'+ item.id" class="btn btn-primary-light btn-icon btn-sm" title="See EOQ Result" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print"><i class="ri-bar-chart-2-line"></i></a>
                                         <button @click="getItemDetail(item.id)" class="btn btn-info-light btn-icon ms-1 btn-sm" title="Edit Item"><i class="ri-edit-line"></i></button>
