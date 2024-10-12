@@ -31,6 +31,23 @@ class EOQ extends \App\Controllers\BaseController
         }
     }
 
+    public function getEOQItemDetail(){
+        try {
+            $data = $this->request->getGet();
+            $eoqItem = $this->eoqModel->getItemDetail($data['id']);
+            if(!$eoqItem){
+                return $this->fail(getString('error.item_not_found'));
+            }
+            $response = [
+                'status' => 'success',
+                'data' => $eoqItem
+            ];
+            return $this->respond($response);
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
     public function getDetailAnalysis(){
         try {
             if(!$this->validate($this->detailAnalysisValidation())){
@@ -125,6 +142,33 @@ class EOQ extends \App\Controllers\BaseController
             ];
             return $this->respond($response);
 
+        } catch (\Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
+    }
+
+    public function updateEOQItem(){
+        try {
+            if(!$this->validate($this->eoqUpdateAnalysisValidation())){
+                return $this->fail($this->validator->getErrors());
+            }   
+
+            $data = $this->request->getPost();
+            $updateData = [
+                'name' => $data['name'],
+                'annual_demand' => $data['annual_demand'],
+                'purchasing_price' => $data['purchasing_price'],
+                'eoq_result' => 0,
+                'number_order' => 0,
+                'frequency_order' => 0,
+            ];
+
+            $this->eoqModel->updateItem($updateData, ['id' => $data['id']]);
+            $response = [
+                'status' => 'success',
+                'message' => getString('success.update'),
+            ];
+            return $this->respond($response);
         } catch (\Exception $e) {
             return $this->failServerError($e->getMessage());
         }
@@ -396,6 +440,37 @@ class EOQ extends \App\Controllers\BaseController
         ];
         return $rules;
     }
+
+    private function eoqUpdateAnalysisValidation(){
+        $rules = [
+            'id' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'ID is required',
+                ]
+            ],
+            'name' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Name is required',
+                ]
+            ],
+            'annual_demand' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Annual Demand is required',
+                ]
+            ],
+            'purchasing_price' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Purchasing Price is required',
+                ]
+            ]
+        ];
+        return $rules;
+    }
+
 
     private function eoqResultValidation(){
         $rules = [

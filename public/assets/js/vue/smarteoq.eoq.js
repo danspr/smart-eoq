@@ -7,9 +7,11 @@ createApp({
             urlCreateNewItem: `${baseURL}api/eoq/insert`,
             urlDetailItem: `${baseURL}eoq/detail/`,
             urlDeleteItem: `${baseURL}api/eoq/delete`,
+            urlGetDetailItem: `${baseURL}api/eoq/item/detail`,
+            urlGetUpdateItem: `${baseURL}api/eoq/item/update`,
             dataList: [],
             itemForm: {
-                name: '', annual_demand: '', purchasing_price: ''
+                id: '', name: '', annual_demand: '', purchasing_price: ''
             },
             buttonSubmitId: 'createButton',
         }
@@ -96,5 +98,47 @@ createApp({
                 })
             }
         },
+        getItemDetail(id) {
+            let self = this;
+            this.itemForm.id = id;
+            axios.get(this.urlGetDetailItem + `?id=${id}`, { headers: axiosHeader })
+            .then(function (response) {
+                if(response.status == 200) {
+                    self.itemForm.id = (response.data).data.id;
+                    self.itemForm.name = (response.data).data.name;
+                    self.itemForm.annual_demand = (response.data).data.annual_demand;
+                    self.itemForm.purchasing_price = (response.data).data.purchasing_price;
+                    $('#eoqUpdateModal').modal('show');
+                }
+            })
+            .catch(function (error) {
+                axiosErrorCallback(error);
+            })
+        },
+        updateItem() {
+            let self = this;
+            if(this.itemForm.name == '' || this.itemForm.annual_demand == '' || this.itemForm.purchasing_price == '') {
+                showAlert('warning', 'All fields are required');
+                return;
+            }
+
+            let confirmation = confirm("If you update the item, the analysis result will be reset. Do you want to continue?");
+            if(confirmation) {
+                axios.post(this.urlGetUpdateItem, this.itemForm, { headers: axiosHeader })
+                .then(function (response) {
+                    if(response.status == 200) {
+                        showAlert('success', getMessage('success.update'));
+                        setTimeout(() => {
+                            redirect(self.urlDetailItem + self.itemForm.id);
+                        }, 1000)
+                        $('#eoqUpdateModal').modal('hide');
+                    }
+                })
+                .catch(function (error) {
+                    axiosErrorCallback(error);
+                })
+            }
+           
+        }
     }
 }).mount('#app-wrapper')
