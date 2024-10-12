@@ -3,7 +3,7 @@
 
 <!-- Start::main-sidebar-header -->
 <div class="main-sidebar-header">
-    <a href="index.html" class="header-logo">
+    <a href="<?= base_url() ?>" class="header-logo">
         <img src="<?= base_url() ?>assets/images/brand-logos/smarteoq-logo.png" alt="logo" class="desktop-logo">
         <img src="<?= base_url() ?>assets/images/brand-logos/smarteoq-toggle-logo.png" alt="logo" class="toggle-logo">
         <img src="<?= base_url() ?>assets/images/brand-logos/smarteoq-logo.png" alt="logo" class="desktop-dark">
@@ -26,12 +26,12 @@
             <!-- End::slide__category -->
 
              <!-- Start::slide -->
-             <li class="slide">
+             <!-- <li class="slide">
                 <a href="/" class="side-menu__item">
                     <i class="bx bx-home side-menu__icon"></i>
                     <span class="side-menu__label">Dashboard</span>
                 </a>
-            </li>
+            </li> -->
             <!-- End::slide -->
 
             <!-- Start::slide -->
@@ -61,18 +61,9 @@
             <li class="slide__category"><span class="category-name">Setting</span></li>
             <!-- End::slide__category -->
 
-             <!-- Start::slide -->
-             <li class="slide">
-                <a href="icons.html" class="side-menu__item">
-                    <i class="bx bxs-component side-menu__icon"></i>
-                    <span class="side-menu__label">EOQ Parameters</span>
-                </a>
-            </li>
-            <!-- End::slide -->
-
             <!-- Start::slide -->
             <li class="slide">
-                <a href="icons.html" class="side-menu__item">
+                <a href="<?= base_url('user') ?>" active-path="user"  class="side-menu__item">
                     <i class="bx bx-user side-menu__icon"></i>
                     <span class="side-menu__label">User Management</span>
                 </a>
@@ -80,12 +71,12 @@
             <!-- End::slide -->
 
              <!-- Start::slide -->
-             <li class="slide">
+             <!-- <li class="slide">
                 <a href="icons.html" class="side-menu__item">
                     <i class="bx bx-cog side-menu__icon"></i>
                     <span class="side-menu__label">Setting</span>
                 </a>
-            </li>
+            </li> -->
             <!-- End::slide -->
             
         </ul>

@@ -11,16 +11,17 @@ class Home extends BaseController
         $auth->isSessionExist();
     }
     
-    public function index(): string
+    public function index()
     {
-        $contents = view('pages/home_view');
-        $data = [
-            ... $this->defaultDataView(),
-            'pageTitle' => 'Dashboard | SmartEOQ',
-            'contents' => $contents,
-            // 'vueScript' => 'assets/js/ps-script-admin.js',
-        ];
+        return redirect()->to(base_url('eoq')); 
+        // $contents = view('pages/home_view');
+        // $data = [
+        //     ... $this->defaultDataView(),
+        //     'pageTitle' => 'Dashboard | SmartEOQ',
+        //     'contents' => $contents,
+        //     // 'vueScript' => 'assets/js/ps-script-admin.js',
+        // ];
 
-        return view('templates/main_view', $data);
+        // return view('templates/main_view', $data);
     }
 }

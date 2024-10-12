@@ -16,6 +16,9 @@ $routes->get('/eoq', 'EOQ::index');
 $routes->get('/eoq/parameter', 'EOQ::eoqParamterView');
 $routes->get('/eoq/detail/([0-9]+)', 'EOQ::eoqDetailView/$1');
 
+/** User routes */
+$routes->get('/user', 'User::index');
+
 /**
  * API routes
  */
@@ -45,6 +48,17 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], static function ($
         $routes->post('delete', 'EOQ::deleteParameter');
         $routes->post('default/update', 'EOQ::updateDefaultParameter');
         $routes->post('default/delete', 'EOQ::deleteDefaultParameter');
+    });
+
+     /** User */
+     $routes->group('user', static function ($routes) {
+        $routes->get('list', 'User::getUserList');
+        $routes->get('detail', 'User::getUserDetail');
+        $routes->post('update', 'User::updateUser');
+        $routes->post('insert', 'User::insertUser');
+        $routes->post('delete', 'User::deleteUser');
+        $routes->post('change-password', 'User::changePassword');
+        $routes->post('current-user', 'User::getCurrentUser');
     });
 
 });
