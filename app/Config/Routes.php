@@ -19,6 +19,9 @@ $routes->get('/eoq/detail/([0-9]+)', 'EOQ::eoqDetailView/$1');
 /** User routes */
 $routes->get('/user', 'User::index');
 
+/** Goods routes */
+$routes->get('/goods', 'Goods::index');
+
 /**
  * API routes
  */
@@ -61,6 +64,15 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], static function ($
         $routes->post('delete', 'User::deleteUser');
         $routes->post('change-password', 'User::changePassword');
         $routes->post('current-user', 'User::getCurrentUser');
+    });
+
+     /** User */
+     $routes->group('goods', static function ($routes) {
+        $routes->get('list', 'Goods::getItemList');
+        $routes->get('detail', 'Goods::getItemDetail');
+        $routes->post('insert', 'Goods::insertItem');
+        $routes->post('update', 'Goods::updateItem');
+        $routes->post('delete', 'Goods::deleteItem');
     });
 
 });
