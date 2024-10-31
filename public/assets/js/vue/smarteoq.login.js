@@ -4,7 +4,7 @@ createApp({
     data() {
         return {
             urlLogin: `${baseURL}api/auth/signin`,
-            urlRegisterValidationPage: `${baseURL}register-confirmation`,
+            urlDashboardPage: `${baseURL}dashboard`,
             loginForm : { username: '', password: '' }, 
             buttonLoginId: 'login-button',
         }
@@ -25,7 +25,7 @@ createApp({
                 .then(function (response) {
                     showAlert('success', getMessage('success.login'));
                     setTimeout(() => {
-                        redirect(baseURL);
+                        redirect(urlDashboardPage);
                     }, 1000)
                 })
                 .catch(function (error) {

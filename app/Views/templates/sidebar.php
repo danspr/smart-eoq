@@ -26,17 +26,17 @@
             <!-- End::slide__category -->
 
              <!-- Start::slide -->
-             <!-- <li class="slide">
-                <a href="/" class="side-menu__item">
+             <li class="slide">
+                <a href="/dashboard" active-path="dashboard" class="side-menu__item">
                     <i class="bx bx-home side-menu__icon"></i>
                     <span class="side-menu__label">Dashboard</span>
                 </a>
-            </li> -->
+            </li>
             <!-- End::slide -->
 
             <!-- Start::slide -->
             <li class="slide">
-                <a href="<?= base_url('goods') ?>" active-path="good"  class="side-menu__item">
+                <a href="<?= base_url('goods') ?>" active-path="good" class="side-menu__item">
                     <i class="bx bx-box side-menu__icon"></i>
                     <span class="side-menu__label">Goods</span>
                 </a>
