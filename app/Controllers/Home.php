@@ -2,11 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Models\GoodsModel;
+
 class Home extends BaseController
 {
 
     public function __construct() {
-       
+        $this->goodsModel = new GoodsModel();
     }
     
     public function index()
@@ -20,11 +22,31 @@ class Home extends BaseController
         $auth = new Auth();
         $auth->isSessionExist();
 
+        $topSales = $this->goodsModel->getItemTopSales();
+        $topSalesFormatter = [];
+        foreach ($topSales as $value) {
+            $item = (array) $value;
+           
+            if($value->qty >= $value->eoq_result) {
+                $item['status'] = 'In Stock';
+            } else {
+                $item['status'] = 'Out of Stock';
+            }
+
+            $topSalesFormatter[] = $item;
+        }
+
         $pageName = 'Dashboard';
         $pageView = [
             'pageName' => $pageName,
+            'totalStock' =>  $this->goodsModel->getTotalStock(),
+            'inStock' =>  $this->goodsModel->getTotalInStock(),
+            'outStock' =>  $this->goodsModel->getTotalOutStock(),
+            'topSales' => $topSalesFormatter
         ];
 
+        // echo json_encode($pageView);
+        // exit();
         $contents = view('pages/dashboard/dashboard_view', $pageView);
         $data = [
             ... $this->defaultDataView(),

@@ -43,4 +43,39 @@ class GoodsModel extends Model
         $builder = $this->db->table('goods');
         $builder->delete($whereArray);
     }
+
+    public function getTotalStock(){
+        $builder = $this->db->table('goods');
+        $builder->selectSum('qty');
+        $query = $builder->get();
+        return $query->getRow()->qty;
+    }
+
+    public function getTotalInStock(){        
+        $builder = $this->db->table('goods');
+        $builder->selectCount('qty');
+        $builder->join('eoq_analysis', 'goods.eoq_id = eoq_analysis.id', 'LEFT');
+        $builder->where('qty >= eoq_analysis.eoq_result', null);
+        $query = $builder->get();
+        return $query->getRow()->qty;
+    }
+
+    public function getTotalOutStock(){
+        $builder = $this->db->table('goods');
+        $builder->selectCount('qty');
+        $builder->join('eoq_analysis', 'goods.eoq_id = eoq_analysis.id', 'LEFT');
+        $builder->where('qty < eoq_analysis.eoq_result', null);
+        $query = $builder->get();
+        return $query->getRow()->qty;
+    }
+
+    public function getItemTopSales(){
+        $builder = $this->db->table('goods');
+        $builder->select('goods.id, goods.name, goods.eoq_id, goods.qty, eoq_analysis.eoq_result, eoq_analysis.annual_demand');
+        $builder->join('eoq_analysis', 'goods.eoq_id = eoq_analysis.id', 'LEFT');
+        $builder->orderBy('eoq_analysis.annual_demand', 'DESC');
+        $builder->limit(5);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

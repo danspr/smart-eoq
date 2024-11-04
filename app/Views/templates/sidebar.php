@@ -38,7 +38,7 @@
             <li class="slide">
                 <a href="<?= base_url('goods') ?>" active-path="good" class="side-menu__item">
                     <i class="bx bx-box side-menu__icon"></i>
-                    <span class="side-menu__label">Goods</span>
+                    <span class="side-menu__label">Product</span>
                 </a>
             </li>
             <li class="slide has-sub">

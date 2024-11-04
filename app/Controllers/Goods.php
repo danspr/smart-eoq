@@ -16,7 +16,7 @@ class Goods extends BaseController
 
     public function index(): string
     {
-        $pageName = 'Goods Management';
+        $pageName = 'Product Management';
         $pageView = [
             'pageName' => $pageName,
         ];
@@ -24,7 +24,7 @@ class Goods extends BaseController
         $contents = view('pages/goods/goods_view', $pageView);
         $data = [
             ... $this->defaultDataView(),
-            'pageTitle' => 'Goods Management | ' . getAppName(),
+            'pageTitle' => 'Product Management | ' . getAppName(),
             'contents' => $contents,
             'vueScript' => 'assets/js/vue/smarteoq.goods.js',
         ];
