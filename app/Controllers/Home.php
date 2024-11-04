@@ -22,6 +22,7 @@ class Home extends BaseController
         $auth = new Auth();
         $auth->isSessionExist();
 
+        $totalStock = $this->goodsModel->getTotalStock();
         $topSales = $this->goodsModel->getItemTopSales();
         $topSalesFormatter = [];
         foreach ($topSales as $value) {
@@ -39,7 +40,7 @@ class Home extends BaseController
         $pageName = 'Dashboard';
         $pageView = [
             'pageName' => $pageName,
-            'totalStock' =>  $this->goodsModel->getTotalStock(),
+            'totalStock' => ($totalStock != null) ? $totalStock : 0,
             'inStock' =>  $this->goodsModel->getTotalInStock(),
             'outStock' =>  $this->goodsModel->getTotalOutStock(),
             'topSales' => $topSalesFormatter
