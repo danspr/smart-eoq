@@ -25,7 +25,7 @@ createApp({
                 .then(function (response) {
                     showAlert('success', getMessage('success.login'));
                     setTimeout(() => {
-                        redirect(urlDashboardPage);
+                        redirect(self.urlDashboardPage);
                     }, 1000)
                 })
                 .catch(function (error) {
