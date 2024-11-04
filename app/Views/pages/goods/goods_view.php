@@ -21,11 +21,11 @@
                 <div class="card custom-card">
                     <div class="card-header justify-content-between">
                         <div class="card-title">
-                            Good List
+                            Product List
                         </div>
                         <div class="d-flex">
                             <button class="btn btn-sm btn-primary btn-wave waves-light"  data-bs-toggle="modal"
-                            data-bs-target="#goodsNewModal"><i class="ri-add-line fw-semibold align-middle me-1"></i> Create Goods</button>
+                            data-bs-target="#goodsNewModal"><i class="ri-add-line fw-semibold align-middle me-1"></i> Add New Product</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -47,8 +47,7 @@
                                     <td>{{ item.eoq_result }}</td>
                                     <td>{{ item.qty }}</td>
                                     <td>
-                                        <span v-if="item.status == 'fulfilled'" class="badge bg-success">Fulfilled</span>
-                                        <span v-else-if="item.status == 'need_order'" class="badge bg-warning">Need Order</span>
+                                        <span v-if="item.status == 'fulfilled'" class="badge bg-success">In Stock</span>
                                         <span v-else class="badge bg-danger">Out of Stock</span>
                                     </td>
                                     <td>
